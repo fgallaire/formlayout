@@ -12,8 +12,12 @@ from formlayout import fedit
 
 datalist = [(None, 'JSON tree:'),
             (None, u'Treè vîew.json'),
+            (None, 'JSON columns:'),
+            (None, u'|Treè vîew.json'),
             (None, 'XML tree:'),
-            (None, u'Treè vîew.xml')
+            (None, u'Treè vîew.xml'),
+            (None, 'XML columns:'),
+            (None, u'|Treè vîew.xml')
             ]
 
 print("result:", fedit(datalist, title="Tree examples"))

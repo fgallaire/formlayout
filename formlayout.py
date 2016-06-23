@@ -575,11 +575,15 @@ class FormWidget(QWidget):
                         # JSON file
                         import json
                         from collections import OrderedDict
+                        if value.startswith('|'):
+                            value = value[1:]
+                            tree = QColumnView()
+                        else:
+                            tree = QTreeView()
                         jsonfile = open(value, 'r')
                         jsondata = json.load(jsonfile,
                                              object_pairs_hook=OrderedDict)
                         treemodel = JSONTreeModel(jsondata, value[:-5])
-                        tree = QTreeView()
                         tree.setModel(treemodel)
                         tree.setEditTriggers(QAbstractItemView.NoEditTriggers)
                         self.formlayout.addRow(tree)
@@ -587,10 +591,14 @@ class FormWidget(QWidget):
                         # XML file
                         global ET
                         import xml.etree.ElementTree as ET
+                        if value.startswith('|'):
+                            value = value[1:]
+                            tree = QColumnView()
+                        else:
+                            tree = QTreeView()
                         xmlfile = open(value, 'r')
                         xmldata = ET.parse(xmlfile)
                         treemodel = XMLTreeModel(xmldata, value[:-4])
-                        tree = QTreeView()
                         tree.setModel(treemodel)
                         tree.setEditTriggers(QAbstractItemView.NoEditTriggers)
                         self.formlayout.addRow(tree)
