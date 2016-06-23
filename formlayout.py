@@ -74,6 +74,7 @@ if os.environ['QT_API'] == 'pyqt':
     from PyQt4.QtCore import *  # analysis:ignore
     from PyQt4.QtCore import pyqtSlot as Slot
     from PyQt4.QtCore import pyqtProperty as Property
+    from PyQt4.QtSql import *
 
 if os.environ['QT_API'] == 'pyqt5':
     from PyQt5.QtWidgets import *  # analysis:ignore
@@ -82,11 +83,13 @@ if os.environ['QT_API'] == 'pyqt5':
     from PyQt5.QtCore import pyqtSignal as Signal  # analysis:ignore
     from PyQt5.QtCore import pyqtSlot as Slot  # analysis:ignore
     from PyQt5.QtCore import pyqtProperty as Property  # analysis:ignore
+    from PyQt5.QtSql import *
     SIGNAL = None  # analysis:ignore
 
 if os.environ['QT_API'] == 'pyside':
     from PySide.QtGui import *  # analysis:ignore
     from PySide.QtCore import *  # analysis:ignore
+    from PySide.QtSql import *  # analysis:ignore
 
 
 # ---+- Python 2-3 compatibility -+----
@@ -398,6 +401,14 @@ class CSVTableModel(QAbstractTableModel):
             return None
 
 
+class SQLiteTableModel(QSqlTableModel):
+    def __init__(self, table, parent=None):
+        QSqlTableModel.__init__(self, parent)
+        self.setEditStrategy(QSqlTableModel.OnFieldChange)
+        self.setTable(table)
+        self.select()
+
+
 def font_is_installed(font):
     """Check if font is installed"""
     return [fam for fam in QFontDatabase().families()
@@ -572,6 +583,22 @@ class FormWidget(QWidget):
                             table.verticalHeader().hide()
                         if header in ['|', None]:
                             table.horizontalHeader().hide()
+                        table.setModel(tablemodel)
+                        self.formlayout.addRow(table)
+                    elif value.endswith('.db'):
+                        # SQLite database
+                        index = value.find('@')
+                        if index != -1:
+                            tablename, dbname = value[:index], value[index+1:]
+                        else:
+                            print("Warning: we need a table name for the `%s`"\
+                                  " database" % value, file=sys.stderr)
+                            self.widgets.append(None)
+                            continue
+                        db = QSqlDatabase.addDatabase("QSQLITE")
+                        db.setDatabaseName(dbname)
+                        tablemodel = SQLiteTableModel(tablename)
+                        table = QTableView()
                         table.setModel(tablemodel)
                         self.formlayout.addRow(table)
                     else:

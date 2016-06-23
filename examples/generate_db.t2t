@@ -1,0 +1,8 @@
+
+% With txt2tags master:
+% $ ./txt2tags generate_db.t2t
+
+%!target: db
+%!options: -o table.db
+
+%!csv: --utf8 --header table.csv

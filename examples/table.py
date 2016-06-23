@@ -20,6 +20,8 @@ datalist = [(None, 'No header:'),
             (None, '|tablev.csv'),
             (None, 'Both headers:'),
             (None, '/tablehv.csv'),
+            (None, 'SQLite table:'),
+            (None, 'table_1@table.db'),
             ]
 
 print("result:", fedit(datalist, title="Table examples"))
