@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Formlayout by fgallaire</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Formlayout</h1>
+      <h2 class="project-tagline">Python module for creating Qt form dialogs and widgets</h2>
+      <a href="https://github.com/fgallaire/formlayout" class="btn">View on GitHub</a>
+      <a href="https://github.com/fgallaire/formlayout/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/fgallaire/formlayout/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="formlayout" class="anchor" href="#formlayout" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>formlayout</h1>
+
+<p>Python module providing the most easy way to create Qt form dialogs and widgets</p>
+
+<p><img src="https://pythonhosted.org/formlayout/_images/advanced1.png">
+<img src="https://pythonhosted.org/formlayout/_images/advanced2.png">
+<img src="https://pythonhosted.org/formlayout/_images/advanced3.png"></p>
+
+<p>With <code>formlayout</code>, generating a form is very easy:</p>
+
+<ul>
+<li>To show a dialog box, just call the <code>fedit</code> function.</li>
+<li>To set-up the form dialog, simply use lists to pass parameters (field names, default values, ...).</li>
+<li>To embedd <code>formlayout</code> in your own library, just copy the <code>formlayout</code> autoconsistent single script (<em>zero dependency</em>, except Qt itself).</li>
+</ul>
+
+<p>See <a href="http://pythonhosted.org/formlayout/">documentation</a> for more details 
+(mostly examples) on the library and <a href="CHANGELOG.md">changelog</a> for recent 
+history of changes.</p>
+
+<h2>
+<a id="overview" class="anchor" href="#overview" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Overview</h2>
+
+<p>Graphical user interface (GUI) libraries are usually designed to address issues 
+which are far more complex than a simple dialog box. As a consequence, generating 
+simple form layouts or dialogs is generally not as easy as it should be: the 
+feature-line count ratio is very low for the most simple dialog boxes.</p>
+
+<p>Within this context, <code>formlayout</code> provides the absolute minimum API required 
+to create form dialog boxes (or layouts). To show a dialog box, simply call 
+the <code>fedit</code> function. To set-up the dialog box, just use lists to pass the 
+required parameters (field names, default values, ...).</p>
+
+<h2>
+<a id="simple-example" class="anchor" href="#simple-example" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Simple Example</h2>
+
+<p>With <code>formlayout</code>, generating a form is very easy.
+Here is a simple example (more are included in source package):</p>
+
+<div class="highlight highlight-source-python"><pre><span class="pl-k">from</span> formlayout <span class="pl-k">import</span> fedit
+datalist <span class="pl-k">=</span> [(<span class="pl-s"><span class="pl-pds">'</span>Name<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>Paul<span class="pl-pds">'</span></span>),
+            (<span class="pl-c1">None</span>, <span class="pl-c1">None</span>),
+            (<span class="pl-c1">None</span>, <span class="pl-s"><span class="pl-pds">'</span>Information:<span class="pl-pds">'</span></span>),
+            (<span class="pl-s"><span class="pl-pds">'</span>Age<span class="pl-pds">'</span></span>, <span class="pl-c1">30</span>),
+            (<span class="pl-s"><span class="pl-pds">'</span>Sex<span class="pl-pds">'</span></span>, [<span class="pl-c1">0</span>, <span class="pl-s"><span class="pl-pds">'</span>Male<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>Female<span class="pl-pds">'</span></span>]),
+            (<span class="pl-s"><span class="pl-pds">'</span>Size<span class="pl-pds">'</span></span>, <span class="pl-c1">12.1</span>),
+            (<span class="pl-s"><span class="pl-pds">'</span>Eyes<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>green<span class="pl-pds">'</span></span>),
+            (<span class="pl-s"><span class="pl-pds">'</span>Married<span class="pl-pds">'</span></span>, <span class="pl-c1">True</span>),
+            ]
+fedit(datalist, <span class="pl-v">title</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>Describe yourself<span class="pl-pds">"</span></span>, <span class="pl-v">comment</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>This is just an &lt;b&gt;example&lt;/b&gt;.<span class="pl-pds">"</span></span>)</pre></div>
+
+<p><img src="https://pythonhosted.org/formlayout/_images/simple.png"></p>
+
+<h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h2>
+
+<p>The only requirements are Python and Qt:</p>
+
+<ul>
+<li>Python &gt;=2.6 or Python &gt;=3.2</li>
+<li>PyQt4 &gt;=4.4 or PyQt5 &gt;= 5.5 or PySide</li>
+</ul>
+
+<p>Installation from the source package is straightforward:</p>
+
+<div class="highlight highlight-source-shell"><pre>python setup.py install</pre></div>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/fgallaire/formlayout">Formlayout</a> is maintained by <a href="https://github.com/fgallaire">fgallaire</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
